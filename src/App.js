@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Library from "./components/Library";
+import UploadPDF from "./components/UploadPDF";
 
 function App() {
+  // This state holds all the PDFs in the library
+  const [pdfs, setPdfs] = useState([]);
+
+  // Function to add a new PDF to the library
+  const addPdf = (pdf) => setPdfs((prev) => [...prev, pdf]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: "20px" }}>
+      <h1>ShelfSpace MVP</h1>
+
+      {/* Upload PDF section */}
+      <UploadPDF addPdf={addPdf} />
+
+      {/* PDF Library section */}
+      <Library pdfs={pdfs} />
     </div>
   );
 }
